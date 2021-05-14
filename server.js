@@ -12,5 +12,7 @@ app.listen(process.env.PORT || 8080);
 
 //PathLocationStartegy
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/index.html'))
+    res.sendFile(path.join(__dirname + '/dist/CovidResourceSearch/index.html'))
 })
+console.log("this is executed")
+console.log(path.join(__dirname + '/dist/CovidResourceSearch/index.html'))
