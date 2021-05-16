@@ -38,7 +38,7 @@ export class AppComponent {
   };
     this.http.post<SearchResult>('http://localhost:9200/covidresource/_search', body, { headers }).subscribe(data => {
        this.RowData = data.hits.hits.map(s => s._source)
-       if(data.hits.hits.length > 0) {
+       if(data.hits.hits.length > 0 || searchQuery.length != 0) {
           this.isGridShow = true
        } else {
          this.isGridShow = false

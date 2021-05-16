@@ -15,8 +15,9 @@
       (ngModelChange)="searchByQuery()">
     </form>
   </div> 
-  <!--Ag grid section-->
-  <div class="ag-theme-balham" style="height:550px;">    
+  
+  <div class="ag-theme-balham" style="height:550px;">  
+    <!--Ag grid section-->  
     <ag-grid-angular 
     style="width:100%; height:85%;" 
     class="ag-theme-balham" 
@@ -25,7 +26,11 @@
     [rowData]="RowData"
     [columnDefs]="ColumnDefs">    
     </ag-grid-angular>
+    <!--Info section-->
+    <h2 *ngIf="!isGridShow">Some info to display the purpose</h2>
   </div>    
+  
+
   <!--Footer section-->
   <footer class="footer">
     <p class="p-footer">Please drop your feedback <a href="mailto:vishmita94@gmail.com">vishmita94@gmail.com</a></p>
