@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -13,20 +13,31 @@ export class AppComponent {
   ColumnDefs: any;  
   RowData: any;    
   isGridShow: boolean = false
+  
+  viewHeight = 0;
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {  
     this.GetAgColumns();  
   } 
 
+  ngAfterViewInit() {
+    this.viewHeight = (window.outerHeight - 120);
+  }
+
   searchByQuery() {
-    this.searchTermByQuery(this.searchText)
+    setTimeout(()=>{ 
+      console.log("hit")
+      this.searchTermByQuery(this.searchText)
+     }, 1000)
+
   }
 
   searchTermByQuery(searchQuery: string) {
     const headers = {'Content-Type': 'application/json' };
     const body = {
-      size: 20, 
+      size: 40, 
       from: 0,
       query: {
       multi_match: {
@@ -50,12 +61,12 @@ export class AppComponent {
   //Grid configuration
   GetAgColumns() {  
     this.ColumnDefs = [  
-      { headerName: 'State', field: 'state', sortable: true, filter: true },  
-      { headerName: 'Distributor Name', field: 'distributor_name', sortable: true, filter: true },  
-      { headerName: 'Address', field: 'address', sortable: true, filter: true },  
-      { headerName: 'Email Id', field: 'email_id', sortable: true, filter: true },  
-      { headerName: 'Contact No', field: 'contact_no', sortable: true, filter: true },  
-      { headerName: 'Tags', field: 'tags', sortable: true, filter: true }  
+      { headerName: 'State', field: 'state', sortable: true, filter: true, resizable: true },  
+      { headerName: 'Distributor Name', field: 'distributor_name', sortable: true, filter: true, resizable: true },  
+      { headerName: 'Address', field: 'address', sortable: true, filter: true, resizable: true },  
+      { headerName: 'Email Id', field: 'email_id', sortable: true, filter: true, resizable: true },  
+      { headerName: 'Contact No', field: 'contact_no', sortable: true, filter: true, resizable: true },  
+      { headerName: 'Tags', field: 'tags', sortable: true, filter: true, resizable: true }  
     ];  
   } 
 }

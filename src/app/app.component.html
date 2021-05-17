@@ -1,30 +1,34 @@
-<div class="div-main">
-  <!--Header section-->
+<div class="div-main" #divmain>
   <div class="div-header">
-    <img class="img-header" src="../assets/icons/logo.png">
+      <!--Header section-->
+      <div class="div-img-header">
+        <img class="img-header" src="../assets/icons/logo.png">
+      </div>
+      <!--Search bar section-->
+      <div class="div-searchBox">
+        <form autocomplete="off" class="searchForm">
+          <input 
+          type="text" 
+          [(ngModel)]="searchText" 
+          name="searchBox" 
+          class="input-searchBox" 
+          placeholder="&#xF002;  Search by location, distributor name or items"
+          (ngModelChange)="searchByQuery()">
+        </form>
+      </div> 
   </div>
-  <!--Search bar section-->
-  <div class="div-searchBox">
-    <form autocomplete="off" class="searchForm">
-      <input 
-      type="text" 
-      [(ngModel)]="searchText" 
-      name="searchBox" 
-      class="input-searchBox" 
-      placeholder="&#xF002;  Search by location, distributor name or items"
-      (ngModelChange)="searchByQuery()">
-    </form>
-  </div> 
   
-  <div class="ag-theme-balham" style="height:550px;">  
+  <div class="ag-theme-balham" id="gridView" [ngStyle]="{'height': viewHeight + 'px'}">
     <!--Ag grid section-->  
     <ag-grid-angular 
     style="width:100%; height:85%;" 
     class="ag-theme-balham" 
     *ngIf = "isGridShow"
     [pagination]="true"
+    [paginationAutoPageSize]="true"
     [rowData]="RowData"
-    [columnDefs]="ColumnDefs">    
+    [columnDefs]="ColumnDefs"
+    [animateRows]="true" enableSorting>    
     </ag-grid-angular>
     <!--Info section-->
     <h2 *ngIf="!isGridShow">Some info to display the purpose</h2>

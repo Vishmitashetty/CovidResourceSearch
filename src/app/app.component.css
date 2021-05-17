@@ -1,26 +1,36 @@
-.img-header 
-{
-    height: 100px;
-}
-
 .div-header
 {
     margin: 0px;
     margin-bottom: 20px;
     box-shadow: 0 10px 10px -5px #ECEFF1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 50px;
+}
+
+.div-img-header
+{
+    width: 80px;
 }
 
 .div-searchBox
 {
     margin: 0px;
     text-align: center;
-    margin-bottom: 20px;
+    width: 100%;
+}
+
+.img-header 
+{
+    height: 50px;
+    width: 80px;
 }
 
 .input-searchBox
 {
-    height: 50px;
-    width: 70%;
+    height: 30px;
     border-radius: 25px;
     border-width: 1px;
     border-color: #B0BEC5;
@@ -28,6 +38,9 @@
     outline-width: 0px;
     font-family: "FontAwesome";
     font-size: 20px;
+    margin-right: 20px;
+    width: 40%;
+    padding-right: 10px;
 }
 
 .div-main
@@ -59,6 +72,14 @@
  {
      margin: 0px;
  }
+ 
+ #gridView
+ {
+     min-height: 200px;
+ }
 
-
-.ng-untouched::-webkit-input-placeholder { color: #B0BEC5; }
+.ng-untouched::-webkit-input-placeholder 
+{ 
+    color: #B0BEC5; 
+    font-size: 12px;
+}
