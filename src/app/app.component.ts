@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,13 @@ export class AppComponent {
   ColumnDefs: any;  
   RowData: any;    
   isGridShow: boolean = false
-  
   viewHeight = 0;
+  private gridApi: any;
+  private gridColumnApi: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+     
+   }
 
   ngOnInit() {  
     this.GetAgColumns();  
@@ -28,7 +32,6 @@ export class AppComponent {
 
   searchByQuery() {
     setTimeout(()=>{ 
-      console.log("hit")
       this.searchTermByQuery(this.searchText)
      }, 1000)
 
@@ -58,6 +61,10 @@ export class AppComponent {
     })
   }
 
+  downloadAsCSV() {
+    this.gridApi.exportDataAsCsv();
+  }
+
   //Grid configuration
   GetAgColumns() {  
     this.ColumnDefs = [  
@@ -68,7 +75,12 @@ export class AppComponent {
       { headerName: 'Contact No', field: 'contact_no', sortable: true, filter: true, resizable: true },  
       { headerName: 'Tags', field: 'tags', sortable: true, filter: true, resizable: true }  
     ];  
-  } 
+  }
+  
+  onGridReady(params: any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
 }
 
 //Model defination

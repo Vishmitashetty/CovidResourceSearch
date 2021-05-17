@@ -16,11 +16,15 @@
           (ngModelChange)="searchByQuery()">
         </form>
       </div> 
+      <div>
+        <button *ngIf = "isGridShow" class="download-button" (click)="downloadAsCSV()">Download CSV File</button>
+      </div>
   </div>
   
-  <div class="ag-theme-balham" id="gridView" [ngStyle]="{'height': viewHeight + 'px'}">
+  <div  id="gridView" [ngStyle]="{'height': viewHeight + 'px'}">
     <!--Ag grid section-->  
     <ag-grid-angular 
+    class="ag-theme-balham"
     style="width:100%; height:85%;" 
     class="ag-theme-balham" 
     *ngIf = "isGridShow"
@@ -28,10 +32,20 @@
     [paginationAutoPageSize]="true"
     [rowData]="RowData"
     [columnDefs]="ColumnDefs"
+    (gridReady)="onGridReady($event)"
     [animateRows]="true" enableSorting>    
     </ag-grid-angular>
     <!--Info section-->
-    <h2 *ngIf="!isGridShow">Some info to display the purpose</h2>
+    <div *ngIf="!isGridShow" class="div-description">
+      <h1 id="description">
+        Full text search engine built on 1000+ datasets for covid resources based on location.
+      </h1>
+      <div class="div-dynamic-description">
+        <h2 class="h2-dynamic-description">
+          Medical oxygen, beds, medicines, consultation and ngo.
+        </h2>
+      </div>
+    </div>
   </div>    
   
 

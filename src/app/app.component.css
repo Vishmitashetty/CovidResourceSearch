@@ -1,3 +1,13 @@
+html, body {margin: 0;  overflow: hidden}
+
+ /* Main Div */
+ .div-main
+{
+    margin: 0px;
+    overflow: hidden;
+}
+
+ /* Header css */
 .div-header
 {
     margin: 0px;
@@ -33,7 +43,7 @@
     height: 30px;
     border-radius: 25px;
     border-width: 1px;
-    border-color: #B0BEC5;
+    border-color: #78909C;
     padding-left: 10px;
     outline-width: 0px;
     font-family: "FontAwesome";
@@ -43,11 +53,23 @@
     padding-right: 10px;
 }
 
-.div-main
-{
-    margin: 0px;
+.ng-untouched::-webkit-input-placeholder 
+{ 
+    color: #78909C; 
+    font-size: 12px;
 }
 
+.download-button {
+    background-color: #512DA8;
+    color: white;
+    border: none;
+    width: 150px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+
+/* Footer */
 .footer {
     position: fixed;
     left: 0;
@@ -68,18 +90,52 @@
     margin: 0px;
  }
 
- .body-style 
- {
-     margin: 0px;
- }
- 
- #gridView
- {
-     min-height: 200px;
- }
+ /* Description*/
 
-.ng-untouched::-webkit-input-placeholder 
-{ 
-    color: #B0BEC5; 
-    font-size: 12px;
+.div-description
+{
+    text-align: center;
 }
+
+.div-dynamic-description
+{
+    width: 100%; 
+    margin: auto;
+}
+
+h1
+{
+    color: #607D8B;
+    margin-top: 100px;
+    font-size: 60px;
+}
+
+.h2-dynamic-description {
+    border-right: solid 3px #4527A0;
+    color: #4527A0;
+    white-space: nowrap;
+    overflow: hidden;     
+    font-size: 35px;
+    height: max-content;
+    text-align: center;
+    margin: auto;
+  }
+  
+  /* Animation */
+ .h2-dynamic-description {
+    animation: animated-text 4s steps(29,end) 1s 1 normal both,
+               animated-cursor 600ms steps(29,end) infinite;
+  }
+  
+  /* text animation */
+  @keyframes animated-text{
+    from{width: 0;}
+    to{width: 65%;}
+  }
+
+  /* cursor animations */
+  
+  @keyframes animated-cursor{
+    from{border-right-color: white;}
+    to{border-right-color: transparent;}
+  }
