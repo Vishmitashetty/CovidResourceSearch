@@ -1,4 +1,4 @@
-html, body {margin: 0;  overflow: hidden}
+/* html, body {margin: 0;  overflow: hidden} */
 
  /* Main Div */
  .div-main
@@ -96,6 +96,7 @@ html, body {margin: 0;  overflow: hidden}
 .div-description
 {
     text-align: center;
+    margin: 20px;
 }
 
 .div-dynamic-description
@@ -131,7 +132,7 @@ h1
   /* text animation */
   @keyframes animated-text{
     from{width: 0;}
-    to{width: 65%;}
+    to{width: 90%;}
   }
 
   /* cursor animations */
@@ -139,4 +140,55 @@ h1
   @keyframes animated-cursor{
     from{border-right-color: white;}
     to{border-right-color: transparent;}
+  }
+
+  /* Media queries */
+
+  @media screen and (max-width: 981px) {
+    h1
+    {
+        color: #607D8B;
+        margin-top: 60px;
+        font-size: 40px;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        right: 20px;
+        width: 100%;
+        text-align: right;
+        font-style: italic;
+        background-color: #ECEFF1;
+        height: 25px;
+        align-content: center;
+        padding-top: 5px;
+        font-size: 10px;
+     }
+
+     .h2-dynamic-description {
+        border-right: solid 3px #4527A0;
+        color: #4527A0;
+        white-space: nowrap;
+        overflow: hidden;     
+        font-size: 25px;
+        height: max-content;
+        text-align: center;
+        margin: auto;
+      }
+  }
+
+  @media screen and (max-width: 600px) {
+   
+     .h2-dynamic-description {
+        border-right: solid 3px #4527A0;
+        color: #4527A0;
+        white-space: nowrap;
+        overflow: hidden;     
+        font-size: 18px;
+        height: max-content;
+        text-align: center;
+        margin: auto;
+      }
   }
