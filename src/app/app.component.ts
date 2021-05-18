@@ -71,7 +71,6 @@ export class AppComponent {
   } else {
     this.endPoint = environment.endpoint_url
   }
-  console.log(this.endPoint)
 
     this.http.post<SearchResult>(this.endPoint + '/covidresource/_search', body, httpOptions).subscribe(data => {
        this.RowData = data.hits.hits.map(s => s._source)
@@ -96,7 +95,14 @@ export class AppComponent {
       { headerName: 'Address', field: 'address', sortable: true, resizable: true },  
       { headerName: 'Email Id', field: 'email_id', sortable: true, resizable: true },  
       { headerName: 'Contact No', field: 'contact_no', sortable: true, resizable: true },  
-      { headerName: 'Link', field: 'link', sortable: true, resizable: true }, 
+      { headerName: 'Link', field: 'link', sortable: true, resizable: true, 
+      cellRenderer: function(params: any) {
+
+        if(params.value != null) {
+          return '<a href=' + params.value + ' target="_blank">'+ params.value+'</a>'
+        }
+        return ''
+    } }, 
       { headerName: 'Tags', field: 'tags', sortable: true, resizable: true }  
     ];  
   }
@@ -139,5 +145,6 @@ interface Source
   address: string
   email_id: string
   contact_no: string
+  link: string
   tags: string
 }
