@@ -1,5 +1,5 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 
@@ -40,7 +40,19 @@ export class AppComponent {
   }
 
   searchTermByQuery(searchQuery: string) {
-    const headers = {'Content-Type': 'application/json' };
+
+    //Credentials
+    var username = "elastic"
+    var pwd = "d9K3RNS8erKOYZ3L6SrDcUpI"
+    var authValue = username + ":" + pwd
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': "Basic " + btoa(authValue)
+      })
+    };
+
     const body = {
       size: 40, 
       from: 0,
@@ -52,12 +64,16 @@ export class AppComponent {
       }
     }
   };
+
+  
   if(environment.production) {
       this.endPoint = environment.endpoint_url
   } else {
     this.endPoint = environment.endpoint_url
   }
-    this.http.post<SearchResult>(this.endPoint + '/covidresource/_search', body, { headers }).subscribe(data => {
+  console.log(this.endPoint)
+
+    this.http.post<SearchResult>(this.endPoint + '/covidresource/_search', body, httpOptions).subscribe(data => {
        this.RowData = data.hits.hits.map(s => s._source)
        if(data.hits.hits.length > 0 || searchQuery.length != 0) {
           this.isGridShow = true
