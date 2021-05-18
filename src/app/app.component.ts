@@ -1,5 +1,6 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent {
   viewHeight = 0;
   private gridApi: any;
   private gridColumnApi: any;
+  private endPoint: string = ""
 
   constructor(private http: HttpClient) {
      
@@ -50,7 +52,12 @@ export class AppComponent {
       }
     }
   };
-    this.http.post<SearchResult>('http://localhost:9200/covidresource/_search', body, { headers }).subscribe(data => {
+  if(environment.production) {
+      this.endPoint = environment.endpoint_url
+  } else {
+    this.endPoint = environment.endpoint_url
+  }
+    this.http.post<SearchResult>(this.endPoint + '/covidresource/_search', body, { headers }).subscribe(data => {
        this.RowData = data.hits.hits.map(s => s._source)
        if(data.hits.hits.length > 0 || searchQuery.length != 0) {
           this.isGridShow = true
@@ -68,12 +75,13 @@ export class AppComponent {
   //Grid configuration
   GetAgColumns() {  
     this.ColumnDefs = [  
-      { headerName: 'State', field: 'state', sortable: true, filter: true, resizable: true },  
-      { headerName: 'Distributor Name', field: 'distributor_name', sortable: true, filter: true, resizable: true },  
-      { headerName: 'Address', field: 'address', sortable: true, filter: true, resizable: true },  
-      { headerName: 'Email Id', field: 'email_id', sortable: true, filter: true, resizable: true },  
-      { headerName: 'Contact No', field: 'contact_no', sortable: true, filter: true, resizable: true },  
-      { headerName: 'Tags', field: 'tags', sortable: true, filter: true, resizable: true }  
+      { headerName: 'State', field: 'state', sortable: true, resizable: true },  
+      { headerName: 'Distributor Name', field: 'distributor_name', sortable: true, resizable: true },  
+      { headerName: 'Address', field: 'address', sortable: true, resizable: true },  
+      { headerName: 'Email Id', field: 'email_id', sortable: true, resizable: true },  
+      { headerName: 'Contact No', field: 'contact_no', sortable: true, resizable: true },  
+      { headerName: 'Link', field: 'link', sortable: true, resizable: true }, 
+      { headerName: 'Tags', field: 'tags', sortable: true, resizable: true }  
     ];  
   }
   

@@ -79,9 +79,10 @@ html, body {margin: 0;  overflow: hidden}
     text-align: right;
     font-style: italic;
     background-color: #ECEFF1;
-    height: 30px;
+    height: 25px;
     align-content: center;
     padding-top: 5px;
+    font-size: 13px;
  }
 
  .p-footer
