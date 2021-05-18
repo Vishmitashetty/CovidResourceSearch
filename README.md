@@ -37,7 +37,12 @@ Python script to refresh index in elastic search for data update [ES Script](htt
 1. Ag-grid
 2. Font awesome
 
+# Deployment
+This project is deployed in Heroku [App](https://covidresourcesearch.herokuapp.com/)
+
 # Project Demo
 
-https://user-images.githubusercontent.com/8758234/118626446-849b5480-b7e8-11eb-85ec-349e826daaa8.mov
+https://user-images.githubusercontent.com/8758234/118628244-0fc91a00-b7ea-11eb-94eb-f5834c3420fd.mov
+
+
 
