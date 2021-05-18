@@ -1,4 +1,13 @@
-# CovidResourceSearch
+# Covid Resource Search
+
+Covid resource search is the full text search engine powered by elastic search, build on top of 1000+ data sets collected from different sources this will be the one point solution for searching resource quickly and efficiently
+
+## Features
+1. Full text search engine.
+2. Download data dump as csv format.
+3. Sort or resize grid view.
+
+# Tech stack
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
 
@@ -6,22 +15,24 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# PostgreSQL
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project is using RDBMS to store and manage data.
 
-## Build
+# Python script
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Python script to refresh index in elastic search for data update [ES Script](https://gist.github.com/Vishmitashetty/3b2a5ef7877f2ea73a4329a476dadaa3)
 
-## Running unit tests
+# Elastic search
+1. Multi match query to search term across multiple fields in given document.
+2. Fuzzy search: This will handle typo upto 2 term displacement.
+3. Ranking: Based on the relevant matches.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Third part libraries
+1. Ag-grid
+2. Font awesome
 
-## Running end-to-end tests
+# Project Demo
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice.
+https://user-images.githubusercontent.com/8758234/118626446-849b5480-b7e8-11eb-85ec-349e826daaa8.mov
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
