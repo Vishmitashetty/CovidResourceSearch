@@ -211,18 +211,22 @@ h1
         }
     }
 
+    .div-description
+    {
+        padding-top: 30px;
+    }
+
     .div-searchBox{
         visibility: hidden;
     }
 
      .h2-dynamic-description {
-        border-right: solid 3px #4527A0;
         color: #4527A0;
-        white-space: nowrap;
-        overflow: hidden;     
+        white-space: initial;
         font-size: 18px;
-        height: max-content;
         text-align: center;
         margin: auto;
+        animation: none;
+        border: none;
       }
   }
