@@ -1,46 +1,43 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Component } from '@angular/core';
+import { ColDef, ColumnApi, GridApi, GridReadyEvent, ICellRendererParams } from 'ag-grid-community';
+import { environment } from '../environments/environment';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Covid Resource Search';
-
-  searchText: string = "";
-  ColumnDefs: any;  
-  RowData: any;    
-  isGridShow: boolean = false
-  viewHeight = 0;
-  private gridApi: any;
-  private gridColumnApi: any;
-  private endPoint: string = ""
+  public title: string = 'Covid Resource Search';
+  public searchText: string = null;
+  public columnDefs: ColDef[] = <ColDef[]>[];
+  public rowData: any[] = <any[]>[];
+  public isGridShow: boolean = false;
+  private gridApi: GridApi = null;
+  private gridColumnApi: ColumnApi = null;
+  private endPoint: string = environment.endpoint_url;
 
   constructor(private http: HttpClient) {
-     
-   }
-
-  ngOnInit() {  
-    this.GetAgColumns();  
-  } 
-
-  ngAfterViewInit() {
-    this.viewHeight = (window.outerHeight - 120);
   }
 
-  searchByQuery() {
-    setTimeout(()=>{ 
+  ngOnInit() {
+    this.setGridColumns();
+  }
+
+  public searchByQuery(): void {
+    setTimeout(() => {
       this.searchTermByQuery(this.searchText)
-     }, 1000)
-
+    }, 1000);
   }
 
-  searchTermByQuery(searchQuery: string) {
+  public clearSearch(): void {
+    this.searchText = "";
+    this.rowData = [];
+  }
 
+  public searchTermByQuery(searchQuery: string): void {
     //Credentials
     var username = "elastic"
     var pwd = "d9K3RNS8erKOYZ3L6SrDcUpI"
@@ -48,98 +45,120 @@ export class AppComponent {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Authorization': "Basic " + btoa(authValue)
       })
     };
 
     const body = {
-      size: 40, 
+      size: 40,
       from: 0,
       query: {
-      multi_match: {
-        query: searchQuery,
-        fields: ["state","address", "tags", "distributor_name"],
-        fuzziness: "auto"
+        multi_match: {
+          query: searchQuery,
+          fields: ["state", "address", "tags", "distributor_name"],
+          fuzziness: "auto"
+        }
       }
-    }
-  };
-
-  
-  if(environment.production) {
-      this.endPoint = environment.endpoint_url
-  } else {
-    this.endPoint = environment.endpoint_url
-  }
+    };
 
     this.http.post<SearchResult>(this.endPoint + '/covidresource/_search', body, httpOptions).subscribe(data => {
-       this.RowData = data.hits.hits.map(s => s._source)
-       if(data.hits.hits.length > 0 || searchQuery.length != 0) {
-          this.isGridShow = true
-       } else {
-         this.isGridShow = false
-       }
-       
-    })
+      this.rowData = data.hits.hits.map(s => s._source)
+      if (data.hits.hits.length > 0 || searchQuery.length != 0) {
+        this.isGridShow = true
+      } else {
+        this.isGridShow = false
+      }
+    });
   }
 
   downloadAsCSV() {
     this.gridApi.exportDataAsCsv();
   }
 
-  //Grid configuration
-  GetAgColumns() {  
-    this.ColumnDefs = [  
-      { headerName: 'State', field: 'state', sortable: true, resizable: true },  
-      { headerName: 'Distributor Name', field: 'distributor_name', sortable: true, resizable: true },  
-      { headerName: 'Address', field: 'address', sortable: true, resizable: true },  
-      { headerName: 'Email Id', field: 'email_id', sortable: true, resizable: true },  
-      { headerName: 'Contact No', field: 'contact_no', sortable: true, resizable: true },  
-      { headerName: 'Link', field: 'link', sortable: true, resizable: true, 
-      cellRenderer: function(params: any) {
-
-        if(params.value != null) {
-          return '<a href=' + params.value + ' target="_blank">'+ params.value+'</a>'
-        }
-        return ''
-    } }, 
-      { headerName: 'Tags', field: 'tags', sortable: true, resizable: true }  
-    ];  
-  }
-  
-  onGridReady(params: any) {
+  public onGridReady(params: GridReadyEvent): void {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+  }
+
+  private setGridColumns(): void {
+    this.columnDefs = [
+      {
+        headerName: 'Tags',
+        field: 'tags',
+        sortable: true,
+        resizable: true
+      },
+      {
+        headerName: 'Distributor Name',
+        field: 'distributor_name',
+        sortable: true,
+        resizable: true
+      },
+      {
+        headerName: 'State',
+        field: 'state',
+        sortable: true,
+        resizable: true
+      },
+      {
+        headerName: 'Address',
+        field: 'address',
+        sortable: true,
+        resizable: true
+      },
+      {
+        headerName: 'Email Id',
+        field: 'email_id',
+        sortable: true,
+        resizable: true
+      },
+      {
+        headerName: 'Contact No',
+        field: 'contact_no',
+        sortable: true,
+        resizable: true
+      },
+      {
+        headerName: 'Link',
+        field: 'link',
+        sortable: true,
+        resizable: true,
+        cellRenderer: this.linkRenderer
+      }
+    ];
+  }
+
+  public linkRenderer(params: ICellRendererParams): string {
+    if (params.value != null) {
+      return '<a href=' + params.value + ' target="_blank">' + params.value + '</a>';
+    }
+    return '';
   }
 }
 
 //Model defination
-interface SearchResult
-{
+interface SearchResult {
   hits: Hits
 }
-interface Hits
-{
+interface Hits {
   total: Total
   max_core: number
   hits: [SearchList]
 }
 
-interface Total
-{
+interface Total {
   value: number
   relation: string
 }
 
-interface SearchList
-{
+interface SearchList {
   _id: string
   _score: number
   _source: Source
 }
 
-interface Source
-{
+interface Source {
   state: string
   distributor_name: string
   address: string
