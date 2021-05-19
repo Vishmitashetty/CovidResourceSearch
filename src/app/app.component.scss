@@ -3,6 +3,7 @@
 {
     margin: 0px;
     overflow: hidden;
+    height: 100%;
 }
 
  /* Header css */
@@ -89,7 +90,7 @@
 .grid-view{
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 105px);
+    height: calc(100% - 105px);
     margin: 0px 8px;
 }
 
