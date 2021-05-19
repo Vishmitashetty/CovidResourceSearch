@@ -46,7 +46,7 @@
     outline-width: 0px;
     font-family: "FontAwesome";
     font-size: 20px;
-    width: 40%;
+    width: 60%;
     padding-right: 10px;
 }
 
@@ -203,7 +203,7 @@ h1
       }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 958px) {
     .search-view-in-mobile{
         display: flex;
         .search-form{
@@ -229,4 +229,11 @@ h1
         animation: none;
         border: none;
       }
+
+
+    .ng-untouched::-webkit-input-placeholder 
+    { 
+        color: #78909C; 
+        font-size: 12px;
+    }
   }
