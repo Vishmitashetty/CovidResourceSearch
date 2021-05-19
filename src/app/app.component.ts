@@ -96,20 +96,8 @@ export class AppComponent {
         resizable: true
       },
       {
-        headerName: 'State',
-        field: 'state',
-        sortable: true,
-        resizable: true
-      },
-      {
-        headerName: 'Address',
+        headerName: 'Location',
         field: 'address',
-        sortable: true,
-        resizable: true
-      },
-      {
-        headerName: 'Email Id',
-        field: 'email_id',
         sortable: true,
         resizable: true
       },
@@ -125,6 +113,18 @@ export class AppComponent {
         sortable: true,
         resizable: true,
         cellRenderer: this.linkRenderer
+      },
+      {
+        headerName: 'Email Id',
+        field: 'email_id',
+        sortable: true,
+        resizable: true
+      },
+      {
+        headerName: 'State',
+        field: 'state',
+        sortable: true,
+        resizable: true
       }
     ];
   }
