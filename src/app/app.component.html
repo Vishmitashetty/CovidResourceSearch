@@ -1,41 +1,38 @@
 <div class="div-main" #divmain>
   <div class="div-header">
-      <!--Header section-->
-      <div class="div-img-header">
-        <img class="img-header" src="../assets/icons/logo.png">
-      </div>
-      <!--Search bar section-->
-      <div class="div-searchBox">
-        <form autocomplete="off" class="searchForm">
-          <input 
-          type="text" 
-          [(ngModel)]="searchText" 
-          name="searchBox" 
-          class="input-searchBox" 
-          placeholder="&#xF002;  Search by location, distributor name or items"
-          (ngModelChange)="searchByQuery()">
-        </form>
-      </div> 
-      <div>
-        <button *ngIf = "isGridShow" class="download-button" (click)="downloadAsCSV()">Download CSV File</button>
-      </div>
+    <!--Header section-->
+    <div class="div-img-header">
+      <img class="img-header" src="../assets/icons/logo.png">
+    </div>
+    <!--Search bar section-->
+    <div class="div-searchBox">
+      <ng-container *ngTemplateOutlet="searchBoxTemplate"></ng-container>
+    </div>
+    <div>
+      <button *ngIf="isGridShow" class="download-button" (click)="downloadAsCSV()">Download CSV File</button>
+    </div>
   </div>
-  
-  <div  id="gridView" [ngStyle]="{'height': viewHeight + 'px'}">
-    <!--Ag grid section-->  
-    <ag-grid-angular 
-    class="ag-theme-balham"
-    style="width:100%; height:85%;" 
-    class="ag-theme-balham" 
-    *ngIf = "isGridShow"
-    [pagination]="true"
-    [paginationAutoPageSize]="true"
-    [rowData]="RowData"
-    [columnDefs]="ColumnDefs"
-    [enableCellTextSelection] ="true"
-    (gridReady)="onGridReady($event)"
-    [animateRows]="true" enableSorting>    
-    </ag-grid-angular>
+
+  <div class="grid-view">
+    <div class="search-view-in-mobile">
+      <ng-container *ngTemplateOutlet="searchBoxTemplate"></ng-container>
+    </div>
+    <!--Ag grid section-->
+    <div style="flex-grow: 1;" *ngIf="isGridShow">
+      <ag-grid-angular class="ag-theme-balham" 
+        style="width:100%; height:100%;" 
+        class="ag-theme-balham" 
+        [pagination]="true" 
+        [paginationAutoPageSize]="true" 
+        [rowData]="rowData" 
+        [columnDefs]="columnDefs"
+        [enableCellTextSelection]="true" 
+        (gridReady)="onGridReady($event)" 
+        [animateRows]="true" 
+        enableSorting
+      >
+      </ag-grid-angular>
+    </div>
     <!--Info section-->
     <div *ngIf="!isGridShow" class="div-description">
       <h1 id="description">
@@ -47,11 +44,21 @@
         </h2>
       </div>
     </div>
-  </div>    
-  
+  </div>
+
 
   <!--Footer section-->
   <footer class="footer">
-    <p class="p-footer">Developed by Vishmita Shetty | Feedback: <a href="mailto:covidresourcesearch@gmail.com">covidresourcesearch@gmail.com</a></p>
+    <p class="p-footer">Developed by Vishmita Shetty | Feedback: <a
+        href="mailto:covidresourcesearch@gmail.com">covidresourcesearch@gmail.com</a></p>
   </footer>
 </div>
+
+
+<ng-template #searchBoxTemplate>
+  <form autocomplete="off" class="search-form">
+    <input type="text" [(ngModel)]="searchText" name="searchBox" class="input-search-box"
+      placeholder="&#xF002;  Search by location, distributor name or items" (ngModelChange)="searchByQuery()">
+      <span (click)="clearSearch()" *ngIf="searchText" class="clear-search">&#10005;</span>
+  </form>
+</ng-template>

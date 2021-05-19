@@ -1,6 +1,4 @@
-/* html, body {margin: 0;  overflow: hidden} */
-
- /* Main Div */
+/* Main Div */
  .div-main
 {
     margin: 0px;
@@ -38,7 +36,7 @@
     width: 80px;
 }
 
-.input-searchBox
+.input-search-box
 {
     height: 30px;
     border-radius: 25px;
@@ -48,16 +46,35 @@
     outline-width: 0px;
     font-family: "FontAwesome";
     font-size: 20px;
-    margin-right: 20px;
     width: 40%;
     padding-right: 10px;
 }
 
-.ng-untouched::-webkit-input-placeholder 
-{ 
-    color: #78909C; 
-    font-size: 12px;
+.search-form{
+    .clear-search{
+        margin-left: -25px;
+        font-size: 18px;
+        z-index: 2;
+        cursor: pointer;
+    }
 }
+
+.search-view-in-mobile{
+    display: none;
+    .input-search-box{
+        width: calc(100% - 0px);
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    
+}
+
+// .ng-untouched::-webkit-input-placeholder 
+// { 
+//     color: #78909C; 
+//     font-size: 12px;
+// }
 
 .download-button {
     background-color: #512DA8;
@@ -68,6 +85,13 @@
     margin-right: 20px;
 }
 
+/* Main Content */
+.grid-view{
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 105px);
+    margin: 0px 8px;
+}
 
 /* Footer */
 .footer {
@@ -97,6 +121,7 @@
 {
     text-align: center;
     margin: 20px;
+    padding-top: 100px;
 }
 
 .div-dynamic-description
@@ -108,7 +133,6 @@
 h1
 {
     color: #607D8B;
-    margin-top: 100px;
     font-size: 60px;
 }
 
@@ -180,7 +204,17 @@ h1
   }
 
   @media screen and (max-width: 600px) {
-   
+    .search-view-in-mobile{
+        display: flex;
+        .search-form{
+            width: 100%;
+        }
+    }
+
+    .div-searchBox{
+        visibility: hidden;
+    }
+
      .h2-dynamic-description {
         border-right: solid 3px #4527A0;
         color: #4527A0;
