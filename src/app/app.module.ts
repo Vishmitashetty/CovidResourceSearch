@@ -8,11 +8,22 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { AgGridModule } from 'ag-grid-angular'
+import { AgGridModule } from 'ag-grid-angular';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import {Routes, RouterModule} from '@angular/router';
+import { HomeComponent } from './home/home.component'
+
+const appRoutes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'disclaimer', component: DisclaimerComponent}
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DisclaimerComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +32,7 @@ import { AgGridModule } from 'ag-grid-angular'
     FormsModule,
     HttpClientModule,
     AgGridModule.withComponents([]),
+    RouterModule.forRoot(appRoutes),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

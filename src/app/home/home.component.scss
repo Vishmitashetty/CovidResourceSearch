@@ -1,0 +1,268 @@
+/* Main Div */
+.div-main
+{
+    margin: 0px;
+    overflow: hidden;
+    height: 100%;
+}
+
+ /* Header css */
+.div-header
+{
+    margin: 0px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 10px -5px #ECEFF1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 50px;
+}
+
+.div-img-header
+{
+    width: 80px;
+}
+
+.div-searchBox
+{
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+}
+
+.img-header 
+{
+    height: 50px;
+    width: 80px;
+}
+
+.input-search-box
+{
+    height: 30px;
+    border-radius: 25px;
+    border-width: 1px;
+    border-color: #78909C;
+    padding-left: 10px;
+    outline-width: 0px;
+    font-family: "FontAwesome";
+    font-size: 20px;
+    width: 60%;
+    padding-right: 10px;
+}
+
+.search-form{
+    .clear-search{
+        margin-left: -25px;
+        font-size: 18px;
+        z-index: 2;
+        cursor: pointer;
+    }
+}
+
+.search-view-in-mobile{
+    display: none;
+    .input-search-box{
+        width: calc(100% - 0px);
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    
+}
+
+.download-button {
+    background-color: #512DA8;
+    color: white;
+    border: none;
+    width: 150px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+/* Main Content */
+.grid-view{
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 105px);
+    margin: 0px 8px;
+}
+
+/* Footer */
+.footer {
+    left: 0;
+    bottom: 0;
+    right: 20px;
+    width: 100%;
+    font-style: italic;
+    background-color: #ECEFF1;
+    height: 25px;
+    align-content: center;
+    padding-top: 5px;
+    font-size: 13px;
+    display: inline-flex;
+ }
+
+ .p-footer
+ {
+    margin: 0px;
+    text-align: right;
+    position:absolute;
+    bottom: 0;
+    right:0;
+    padding:10px;
+ }
+
+ .p-footer-feedback
+ {
+    margin: 0px;
+    text-align: right;
+    position:absolute;
+    bottom: 0;
+    right:0;
+    padding:10px;
+    display: none;
+ }
+
+ .a-disclaimer
+ {
+    left: 0px;
+    bottom: 0px;
+    padding-left: 10px;
+    padding-top: 4px;
+    margin: 0px;
+ }
+
+ /* Description*/
+
+.div-description
+{
+    text-align: center;
+    margin: 20px;
+    padding-top: 100px;
+}
+
+.div-dynamic-description
+{
+    width: 100%; 
+    margin: auto;
+}
+
+h1
+{
+    color: #607D8B;
+    font-size: 60px;
+}
+
+.h2-dynamic-description {
+    border-right: solid 3px #4527A0;
+    color: #4527A0;
+    white-space: nowrap;
+    overflow: hidden;     
+    font-size: 35px;
+    height: max-content;
+    text-align: center;
+    margin: auto;
+  }
+  
+  /* Animation */
+ .h2-dynamic-description {
+    animation: animated-text 4s steps(29,end) 1s 1 normal both,
+               animated-cursor 600ms steps(29,end) infinite;
+  }
+  
+  /* text animation */
+  @keyframes animated-text{
+    from{width: 0;}
+    to{width: 90%;}
+  }
+
+  /* cursor animations */
+  
+  @keyframes animated-cursor{
+    from{border-right-color: white;}
+    to{border-right-color: transparent;}
+  }
+
+  /* Media queries */
+
+  @media screen and (max-width: 981px) {
+    h1
+    {
+        color: #607D8B;
+        margin-top: 60px;
+        font-size: 40px;
+    }
+
+     .h2-dynamic-description {
+        border-right: solid 3px #4527A0;
+        color: #4527A0;
+        white-space: nowrap;
+        overflow: hidden;     
+        font-size: 25px;
+        height: max-content;
+        text-align: center;
+        margin: auto;
+      }
+  }
+
+  @media only screen and (max-width: 482px) {
+    .p-footer {
+        display: none;
+    }
+    .p-footer-feedback
+    {
+       display: block;
+    }
+}
+
+  @media screen and (max-width: 958px) {
+    .search-view-in-mobile{
+        display: flex;
+        .search-form{
+            width: 100%;
+        }
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        right: 20px;
+        width: 100%;
+        font-style: italic;
+        background-color: #ECEFF1;
+        height: 25px;
+        align-content: center;
+        padding-top: 5px;
+        font-size: 10px;
+        display: inline-flex;
+     }
+
+
+    .div-description
+    {
+        padding-top: 30px;
+    }
+
+    .div-searchBox{
+        visibility: hidden;
+    }
+
+     .h2-dynamic-description {
+        color: #4527A0;
+        white-space: initial;
+        font-size: 18px;
+        text-align: center;
+        margin: auto;
+        animation: none;
+        border: none;
+      }
+
+
+    .ng-untouched::-webkit-input-placeholder 
+    { 
+        color: #78909C; 
+        font-size: 12px;
+    }
+  }
