@@ -28,6 +28,8 @@ This project is using RDBMS to store and manage data.
 
 Python script to refresh index in elastic search for data update [ES Script](https://gist.github.com/Vishmitashetty/3b2a5ef7877f2ea73a4329a476dadaa3)
 
+Python script to scrape data from goverment website for injections [Scrape Script](https://gist.github.com/Vishmitashetty/29621c22af0491bf1db6a653a1fc011e)
+
 ## Elastic search
 1. Multi match query to search term across multiple fields in given document.
 2. Fuzzy search: This will handle typo upto 2 term displacement.
@@ -37,14 +39,20 @@ Python script to refresh index in elastic search for data update [ES Script](htt
 1. Ag-grid
 2. Font awesome
 
-# Deployment
+# Frontend Deployment
 This project is integrated with Heroku for continous depoyment [CSR App](https://covidresourcesearch.herokuapp.com/)
+
+# Backend deployment
+Backend deployment is done in elastic cloud and can be monitored using kibana dashboard.
 
 # Project Demo
 
 Supported for mobile and desktop browser.
 
 https://user-images.githubusercontent.com/8758234/119145257-17492700-ba67-11eb-84f3-fd0e97e2cd6f.mov
+
+
+
 
 
 
