@@ -5,7 +5,7 @@ Covid resource search is the full text desktop based search engine powered by el
 ## Features
 1. Full text search engine.
 2. Download data dump as csv format.
-3. Sort or resize grid view.
+3. Sort, resize, shuffle grid view.
 
 # Tech stack
 
@@ -15,10 +15,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-Angular CLI: 12.0.0
-Node: 12.16.3
-Package Manager: npm 6.14.4
-Angular: 12.0.0
+1. Angular CLI: 12.0.0
+2.  Node: 12.16.3
+3.  Package Manager: npm 6.14.4
+4.  Angular: 12.0.0
 
 ## PostgreSQL
 
@@ -38,11 +38,15 @@ Python script to refresh index in elastic search for data update [ES Script](htt
 2. Font awesome
 
 # Deployment
-This project is deployed in Heroku [App](https://covidresourcesearch.herokuapp.com/)
+This project is integrated with Heroku for continous depoyment [CSR App](https://covidresourcesearch.herokuapp.com/)
 
 # Project Demo
 
-https://user-images.githubusercontent.com/8758234/118628244-0fc91a00-b7ea-11eb-94eb-f5834c3420fd.mov
+Supported for mobile and desktop browser.
+
+https://user-images.githubusercontent.com/8758234/119145257-17492700-ba67-11eb-84f3-fd0e97e2cd6f.mov
+
+
 
 
 
