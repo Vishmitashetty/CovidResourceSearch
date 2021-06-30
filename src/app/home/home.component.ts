@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   public searchTermByQuery(searchQuery: string): void {
     //Credentials
     var username = "elastic"
-    var pwd = "vkmmI7MZGWVtYyztopJh9vZa"
+    var pwd = "BC92DZVIUwSz9TSqt2kLtYfa"
     var authValue = username + ":" + pwd
 
     const httpOptions = {
