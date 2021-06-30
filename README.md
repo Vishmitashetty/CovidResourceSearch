@@ -1,6 +1,6 @@
 # Covid Resource Search
 
-Covid resource search is the full text desktop based search engine powered by elastic search, build on top of 1000+ data sets collected from different sources this will be the one point solution for searching resource quickly and efficiently
+Covid resource search is the full text search engine powered by elastic search, build on top of 1000+ data sets collected from different sources this will be the one point solution for searching resource quickly and efficiently
 
 ## Features
 1. Full text search engine.
